@@ -1,0 +1,53 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "@typescript-eslint"
+  ],
+  "extends": [
+    "airbnb-typescript",
+    "airbnb/hooks",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "project": [
+      "./client/tsconfig.json"
+    ]
+  },
+  "settings": {
+    "react": {
+      "version": "16.12"
+    }
+  },
+  "rules": {
+    "@typescript-eslint/no-explicit-any": 2,
+    "no-console": [
+      "error",
+      {
+        "allow": [
+          "warn",
+          "info",
+          "error",
+          "assert"
+        ]
+      }
+    ],
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": [
+          "config/**/*.js",
+          "**/webpack.*.js",
+          "*.config.js"
+        ],
+        "optionalDependencies": false
+      }
+    ]
+  }
+}
