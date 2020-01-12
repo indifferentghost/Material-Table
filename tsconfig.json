@@ -30,7 +30,7 @@
     "types"
   ],
   "exclude": [
-    "config",
+    "config/*.js",
     "dist/*"
   ]
 }

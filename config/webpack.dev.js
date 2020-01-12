@@ -7,7 +7,6 @@ const baseConfig = require('./webpack.base.js');
 module.exports = merge(baseConfig, {
   plugins: [
     new HotModuleReplacementPlugin(),
-    new ReactRefreshWebpackPlugin()
   ],
   stats: 'minimal',
   devServer: {

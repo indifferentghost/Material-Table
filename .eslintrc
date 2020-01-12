@@ -8,7 +8,8 @@
     "airbnb/hooks",
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:@typescript-eslint/recommended-requiring-type-checking"
+    "plugin:@typescript-eslint/recommended-requiring-type-checking",
+    "eslint-config-prettier"
   ],
   "parserOptions": {
     "ecmaVersion": 6,
@@ -17,7 +18,7 @@
       "jsx": true
     },
     "project": [
-      "./client/tsconfig.json"
+      "./tsconfig.json"
     ]
   },
   "settings": {
@@ -26,6 +27,8 @@
     }
   },
   "rules": {
+    "react/prop-types": 0,
+    "import/prefer-default-export": 0,
     "@typescript-eslint/no-explicit-any": 2,
     "no-console": [
       "error",
