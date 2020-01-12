@@ -9,6 +9,25 @@ const theme = createMuiTheme({
   palette: {
     primary: blue,
   },
+  overrides: {
+    MuiTableCell: {
+      head: {
+        fontWeight: 600,
+      },
+    },
+    MuiSelect: {
+      outlined: {
+        padding: '8.5px 14px',
+      },
+    },
+    MuiInputLabel: {
+      outlined: {
+        '&$shrink': {
+          transform: 'translate(1px, -13px) scale(0.75)',
+        },
+      },
+    },
+  },
 });
 
 ReactDOM.render(
