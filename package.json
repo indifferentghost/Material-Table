@@ -6,7 +6,8 @@
   "scripts": {
     "dev:start": "webpack-dev-server --config config/webpack.dev.js",
     "lint": "eslint --ignore-path .gitignore --ext .js,.jsx,.ts,.tsx ./src/",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "build": "webpack --production --config config/webpack.base.js"
   },
   "dependencies": {
     "@material-ui/core": "^4.8.3",
