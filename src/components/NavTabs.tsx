@@ -23,6 +23,9 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 const getTabIndex = (pathname: string, tabs: string[]): number | false => {
+  // /home
+  if (pathname === '/') return 0;
+
   const firstSlash: number = pathname.indexOf('/', 1);
   const lastIndex = firstSlash > 1 ? firstSlash : undefined;
   const uriPath: string = pathname.slice(1, lastIndex);
@@ -64,7 +67,7 @@ export const NavTabs: React.FC = () => {
           label={label}
           component={Link}
           className={classes.tab}
-          to={`/${kebabCase(label)}`}
+          to={`/${label === 'home' ? '' : kebabCase(label)}`}
         />
       ))}
     </Tabs>
