@@ -14,6 +14,9 @@ const theme = createMuiTheme({
       head: {
         fontWeight: 600,
       },
+      footer: {
+        borderBottom: 'none',
+      },
     },
     MuiSelect: {
       outlined: {
@@ -24,6 +27,14 @@ const theme = createMuiTheme({
       outlined: {
         '&$shrink': {
           transform: 'translate(1px, -13px) scale(0.75)',
+        },
+      },
+    },
+    MuiInputBase: {
+      input: {
+        '&[type=date]::-webkit-inner-spin-button': {
+          display: 'none',
+          '-webkit-appearance': 'none',
         },
       },
     },

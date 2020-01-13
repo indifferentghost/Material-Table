@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { DateTime } from 'luxon';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -26,8 +25,7 @@ export const PaginationTable: React.FC<TableProps> = ({ data = [] }) => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
-  const emptyRows =
-    rowsPerPage - Math.min(rowsPerPage, body.length - page * rowsPerPage);
+  const emptyRows = !body.length;
 
   const handleChangePage: ClickHander = (_event, newPage) => {
     setPage(newPage);
@@ -46,7 +44,7 @@ export const PaginationTable: React.FC<TableProps> = ({ data = [] }) => {
         <TableHead>
           <TableRow>
             {header.map((th: CellProps) => (
-              <TableCell>{th}</TableCell>
+              <TableCell key={`header-${th}`}>{th}</TableCell>
             ))}
           </TableRow>
         </TableHead>
@@ -63,9 +61,11 @@ export const PaginationTable: React.FC<TableProps> = ({ data = [] }) => {
             body
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((row: CellProps[]) => (
-                <TableRow>
-                  {row.map((td: CellProps) => (
-                    <TableCell>{td}</TableCell>
+                <TableRow key={`row-${row[0]}`}>
+                  {row.map((td: CellProps, index: number) => (
+                    <TableCell key={`${header[index]}-${row[0]}`}>
+                      {td}
+                    </TableCell>
                   ))}
                 </TableRow>
               ))
@@ -74,7 +74,8 @@ export const PaginationTable: React.FC<TableProps> = ({ data = [] }) => {
         <TableFooter>
           <TableRow>
             <TablePagination
-              colSpan={3}
+              align="right"
+              colSpan={header.length}
               count={body.length}
               rowsPerPage={rowsPerPage}
               page={page}
@@ -86,17 +87,4 @@ export const PaginationTable: React.FC<TableProps> = ({ data = [] }) => {
       </Table>
     </TableContainer>
   );
-};
-
-PaginationTable.defaultProps = {
-  data: [
-    ['id', 'created_at', 'created_by', 'purchase_order_status', 'View'], // default header
-    ...Array.from({ length: 100 }).map((_, i) => [
-      i,
-      DateTime.local().toFormat('yyyy-MM-dd HH:mm:ss'),
-      'Ryan Morton',
-      'New',
-      'View',
-    ]),
-  ],
 };
