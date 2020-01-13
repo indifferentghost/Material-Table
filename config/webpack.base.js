@@ -3,12 +3,12 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const BASE_DIR = path.resolve(__dirname, '../');
-const PUBLIC_DIR = path.resolve(BASE_DIR, './public');
+const STATIC_DIR = path.resolve(BASE_DIR, './static');
 
 module.exports = {
   entry: path.resolve(BASE_DIR, './src/index.tsx'),
   output: {
-    path: path.resolve(BASE_DIR, './dist'),
+    path: path.resolve(BASE_DIR, './public'),
     publicPath: '/',
     filename: '[name].js',
   },
@@ -38,10 +38,10 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      template: path.resolve(PUBLIC_DIR, './index.ejs'),
+      template: path.resolve(STATIC_DIR, './index.ejs'),
       filename: 'index.html',
       title: 'Table',
-      publicDir: PUBLIC_DIR,
+      publicDir: STATIC_DIR,
     }),
   ],
   resolve: {
