@@ -27,6 +27,7 @@
     }
   },
   "rules": {
+    "react/jsx-one-expression-per-line": 0,
     "react/prop-types": 0,
     "import/prefer-default-export": 0,
     "@typescript-eslint/no-explicit-any": 2,

@@ -40,7 +40,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.resolve(PUBLIC_DIR, './index.ejs'),
       filename: 'index.html',
-      title: 'Purchase Orders',
+      title: 'Table',
       publicDir: PUBLIC_DIR,
     }),
   ],

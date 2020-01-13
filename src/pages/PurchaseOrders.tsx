@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useMemo, useContext } from 'react';
 import { DateTime } from 'luxon';
+import { Helmet } from 'react-helmet';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
@@ -12,7 +13,6 @@ import { InputSearchField } from '../components/InputField';
 import { SelectField } from '../components/SelectField';
 import { DataProvider, DataContext } from '../store';
 
-// TODO: Throw it in a context
 const TEST_DATA: (string | number)[][] = Array.from({ length: 100 }).map(
   (_, i) => [
     i,
@@ -152,19 +152,24 @@ export const PurchaseOrders: React.FC = () => {
   const data = useFormatData(headers, TEST_DATA);
 
   return (
-    <DataProvider headers={headers} data={TEST_DATA}>
-      <Container className={classes.jumbotron}>
-        <Typography className={classes.title} variant="h6">
-          Purchase Orders
-        </Typography>
-        <Paper className={classes.paper}>
-          <Button className={classes.button} variant="outlined">
-            Create PO
-          </Button>
-          <PurchaseOrderForm />
-          <PaginationTable data={[headers, ...data]} />
-        </Paper>
-      </Container>
-    </DataProvider>
+    <>
+      <Helmet>
+        <title>Purchase Orders</title>
+      </Helmet>
+      <DataProvider headers={headers} data={TEST_DATA}>
+        <Container className={classes.jumbotron}>
+          <Typography className={classes.title} variant="h6">
+            Purchase Orders
+          </Typography>
+          <Paper className={classes.paper}>
+            <Button className={classes.button} variant="outlined">
+              Create PO
+            </Button>
+            <PurchaseOrderForm />
+            <PaginationTable data={[headers, ...data]} />
+          </Paper>
+        </Container>
+      </DataProvider>
+    </>
   );
 };

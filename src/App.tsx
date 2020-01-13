@@ -1,6 +1,7 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Link } from 'react-router-dom';
 import AppBar from '@material-ui/core/AppBar';
+import Typography from '@material-ui/core/Typography';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { makeStyles, Theme } from '@material-ui/core/styles';
 import { NavTabs } from './components/NavTabs';
@@ -13,6 +14,12 @@ const useStyles = makeStyles((theme: Theme) => ({
     flexDirection: 'row',
     padding: theme.spacing(0, 1),
   },
+  linkContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 'fill-available',
+  },
 }));
 
 export const App: React.FC = () => {
@@ -20,13 +27,22 @@ export const App: React.FC = () => {
   return (
     <>
       <CssBaseline />
-      <AppBar position="sticky" classes={classes}>
+      <AppBar position="sticky" classes={{ root: classes.root }}>
         <NavTabs />
         <NavAvatar />
       </AppBar>
       <Switch>
-        <Route value="purchase-orders" path="/purchase-orders">
+        <Route path="/purchase-orders">
           <PurchaseOrders />
+        </Route>
+        <Route path="/*">
+          <div className={classes.linkContainer}>
+            <Typography variant="h5">
+              Hey, there&apos;s nothing here{' '}
+              <Link to="/purchase-orders">visit purchase orders</Link> for
+              content.
+            </Typography>
+          </div>
         </Route>
       </Switch>
     </>
