@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 }));
 
 export const NavAvatar: React.FC<{ username?: string }> = ({
-  username = 'rmortan',
+  username = 'jsmith',
 }) => {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);

@@ -19,7 +19,7 @@ const TEST_DATA: (string | number)[][] = Array.from({ length: 100 }).map(
     DateTime.local()
       .minus({ days: i })
       .toFormat('yyyy-MM-dd HH:mm:ss'),
-    i % 2 ? 'Ryan Morton' : 'John Silkey',
+    i % 2 ? 'Red Skelton' : 'Richard Pryor',
     i % 3 ? 'New' : 'Completed',
     'View',
   ],
