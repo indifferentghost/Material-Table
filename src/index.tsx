@@ -22,6 +22,11 @@ const theme = createMuiTheme({
       outlined: {
         padding: '8.5px 14px',
       },
+      iconOutlined: {
+        color: 'lightgray',
+        marginRight: -5,
+        borderLeft: '1px solid lightgray',
+      },
     },
     MuiInputLabel: {
       outlined: {
