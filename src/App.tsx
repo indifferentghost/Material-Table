@@ -35,7 +35,7 @@ export const App: React.FC = () => {
         <Route path="/purchase-orders">
           <PurchaseOrders />
         </Route>
-        <Route path="/*">
+        <Route>
           <div className={classes.linkContainer}>
             <Typography variant="h5">
               Hey, there&apos;s nothing here{' '}
