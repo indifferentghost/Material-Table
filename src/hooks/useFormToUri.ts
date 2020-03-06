@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useQuery } from './useQuery';
 import { useDebounce } from './useDebounce';
@@ -18,11 +18,14 @@ export const useFormToUri: FormToUriHook = (propname, defaultProp = '') => {
   const routerHistory = useHistory();
   const prop: null | string = query.get(propname);
   const [state, setState] = useState<FormStateValues>(prop || defaultProp);
-  const debounceFn = useDebounce(
+
+  const memoizedDefaultDebounceFn = useCallback(
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (h: any, search: string): void => h.replace({ search }),
-    500,
+    [],
   );
+
+  const debounceFn = useDebounce(memoizedDefaultDebounceFn, 500);
 
   useEffect(() => {
     if (prop) {
