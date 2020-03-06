@@ -1,10 +1,9 @@
 import React, { createContext, useState, useEffect } from 'react';
-import uniq from 'lodash/uniq';
 
 export const DataContext = createContext({
   data: [] as (string | number)[][],
-  statusList: [] as string[],
-  userList: [] as string[],
+  statusList: new Set<string>(),
+  userList: new Set<string>(),
 });
 
 type DataProviderProps = {
@@ -19,24 +18,24 @@ export const DataProvider: React.FC<DataProviderProps> = ({
 }) => {
   const [state, setState] = useState({
     data,
-    statusList: [],
-    userList: [],
+    statusList: new Set<string>(),
+    userList: new Set<string>(),
   });
 
   useEffect(() => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     setState((s: any) => ({
       ...s,
-      statusList: uniq(
+      statusList: new Set<string>(
         data.map(
-          (d: (string | number)[]): string | number =>
-            d[headers.indexOf('purchase_order_status')],
+          (d: (string | number)[]): string =>
+            d[headers.indexOf('purchase_order_status')] as string,
         ),
       ),
-      userList: uniq(
+      userList: new Set<string>(
         data.map(
-          (d: (string | number)[]): string | number =>
-            d[headers.indexOf('created_by')],
+          (d: (string | number)[]): string =>
+            d[headers.indexOf('created_by')] as string,
         ),
       ),
     }));

@@ -59,7 +59,7 @@ const PurchaseOrderForm: React.FC = () => {
         placeholder="Vendor Order ID"
       />
       <SelectField id="status" label="Status" urlParam="status">
-        {statusList.map((status: string) => (
+        {Array.from(statusList, (status: string) => (
           <MenuItem key={status} value={status}>
             {status}
           </MenuItem>
@@ -67,7 +67,7 @@ const PurchaseOrderForm: React.FC = () => {
       </SelectField>
       <SelectField id="vendor" label="Vendor" urlParam="vendor" />
       <SelectField id="user" label="User" urlParam="user">
-        {userList.map((user: string) => (
+        {Array.from(userList, (user: string) => (
           <MenuItem key={user} value={user}>
             {user}
           </MenuItem>
