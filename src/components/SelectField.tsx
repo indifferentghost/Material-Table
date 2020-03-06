@@ -3,6 +3,7 @@ import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import MenuItem from '@material-ui/core/MenuItem';
+import makeStyles from '@material-ui/core/styles/makeStyles';
 import KeyboardArrowDown from '@material-ui/icons/KeyboardArrowDown';
 import { useFormToUri } from '../hooks/useFormToUri';
 
@@ -14,6 +15,12 @@ type SelectFieldProps = {
   placeholder?: string;
 };
 
+const useSelectFieldStyles = makeStyles({
+  list: {
+    paddingTop: 0,
+  },
+});
+
 export const SelectField: React.FC<SelectFieldProps> = ({
   urlParam,
   defaultProp,
@@ -23,6 +30,7 @@ export const SelectField: React.FC<SelectFieldProps> = ({
   children,
 }) => {
   const [value, selectValue] = useFormToUri(urlParam, defaultProp);
+  const classes = useSelectFieldStyles();
   return (
     <FormControl>
       <InputLabel variant="outlined" shrink id={id}>
@@ -35,6 +43,18 @@ export const SelectField: React.FC<SelectFieldProps> = ({
         value={value}
         onChange={(event: React.ChangeEvent<{ value: unknown }>): void => {
           selectValue(event.target.value as string);
+        }}
+        MenuProps={{
+          anchorOrigin: {
+            vertical: 'bottom',
+            horizontal: 'left',
+          },
+          transformOrigin: {
+            vertical: 'top',
+            horizontal: 'left',
+          },
+          getContentAnchorEl: null,
+          classes,
         }}
         IconComponent={KeyboardArrowDown}
       >
